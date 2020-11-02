@@ -1,0 +1,46 @@
+{
+  "name": "cv-validator",
+  "version": "1.0.0",
+  "description": "Validator for the CVS (curriculum-vitae-specification)",
+  "main": "dist/index.js",
+  "scripts": {
+    "doc": "typedoc --out docs --mode modules src",
+    "build": "rm -rf dist && tsc",
+    "prestart": "rm -rf dist && tsc",
+    "start": "node build/cli.js",
+    "fmt": "prettier --write '{,*/**/}*.{js,jsx,ts,json,md}'",
+    "fmt-check": "prettier --check '{,*/**/}*.{js,jsx,ts,json,md}'",
+    "test": "mocha -r ts-node/register tests/**/*.test.ts",
+    "coverage": "nyc -r lcov -e .ts -x \"*.test.ts\" npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Liamdoult/cv-validator.git"
+  },
+  "author": "Liam Doult",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Liamdoult/cv-validator/issues"
+  },
+  "homepage": "https://github.com/Liamdoult/cv-validator#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "husky": "^4.2.5",
+    "mocha": "^7.1.1",
+    "nyc": "^15.0.1",
+    "prettier": "2.0.4",
+    "pretty-quick": "^2.0.1",
+    "ts-node": "^8.8.2",
+    "typedoc": "^0.17.4",
+    "typescript": "^3.8.3",
+    "@types/node": "^13.13.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && npm test -- --reporter min"
+    }
+  },
+  "types": "dist/index.d.ts"
+}
